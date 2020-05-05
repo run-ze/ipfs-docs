@@ -1,5 +1,6 @@
 ---
 title: Command-line quick start
+sidebarDepth: 1
 legacyUrl: https://docs.ipfs.io/introduction/usage/
 description: Quick-start guide for installing and getting started with IPFS from the command line.
 ---
@@ -16,29 +17,29 @@ Don’t want to use the command line right now? Give the desktop-app implementat
 
 Installing IPFS is simple, but varies between operating system:
 
-| [Windows](#windows) | [macOS](#macos) | [Linux](#linux) |
-| --- | --- | --- |
+| [Windows](#windows)                                                             | [macOS](#macos)                                                           | [Linux](#linux)                                                           |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | [![Windows icon](./images/command-line-quick-start/windows-icon.png)](#windows) | [![macOS icon](./images/command-line-quick-start/apple-icon.png)](#macos) | [![Linux icon](./images/command-line-quick-start/linux-icon.png)](#linux) |
 
 ### Windows
 
-1. Download [`go-ipfs_v0.5.0_windows-386.zip` from GitHub](https://github.com/ipfs/go-ipfs/releases/download/v0.5.0/).
+1. Download the Windows binary from [`dist.ipfs.io`](https://dist.ipfs.io/#go-ipfs).
 
    ```powershell
    cd ~\
-   wget https://github.com/ipfs/go-ipfs/releases/download/v0.5.0/go-ipfs-v0.5.0_windows-386.zip -Outfile go-ipfs-v0.5.0.zip
+   wget https://dist.ipfs.io/go-ipfs/v0.5.0/go-ipfs_v0.5.0_windows-amd64.zip -Outfile go-ipfs-v0.5.0.zip
    ```
 
-1. Unzip the file and move it somewhere handy.
+2. Unzip the file and move it somewhere handy.
 
    ```powershell
-   Expand-Archive -Path go-ipfs-v0.5.0.zip -DestinationPath ~\Apps\go-ipfs_v0.5.0
+   Expand-Archive -Path go-ipfs-v0.5.0.zip -DestinationPath ~\Apps\go-ipfs-v0.5.0
    ```
 
-1. Move into the `go-ipfs_v0.5.0` folder and check that the `ipfs.exe` works:
+3. Move into the `go-ipfs_v0.5.0` folder and check that the `ipfs.exe` works:
 
    ```powershell
-   cd ~\Apps\go-ipfs_v0.5.0\go-ipfs
+   cd ~\Apps\go-ipfs-v0.5.0\go-ipfs
    .\ipfs.exe --version
 
    > ipfs version 0.5.0
@@ -46,37 +47,50 @@ Installing IPFS is simple, but varies between operating system:
 
    While you can use IPFS right now, it's better to add `ipfs.exe` to your `PATH.` by using the following steps.
 
-1. Print the current working directory and copy it to your clipboard:
+4. Print the current working directory and copy it to your clipboard:
 
    ```powershell
    pwd
 
    > Path
    > ----
-   > C:\Users\Johnny\Apps\go-ipfs_v0.5.0\go-ipfs
+   > C:\Users\Johnny\Apps\go-ipfs-v0.5.0\go-ipfs
    ```
 
-1. Add the address you just copied to PowerShell's `PATH` by adding it to the end of the `profile.ps1` file stored in `Documents\WindowsPowerShell`:
+5. Add the address you just copied to PowerShell's `PATH` by adding it to the end of the `profile.ps1` file stored in `Documents\WindowsPowerShell`:
 
    ```powershell
-   Add-Content C:\Users\Johnny\Documents\WindowsPowerShell\profile.ps1 "[System.Environment]::SetEnvironmentVariable('PATH',`$Env:PATH+';;C:\Users\Johnny\Apps\go-ipfs_v0.5.0\go-ipfs')"
+   Add-Content C:\Users\Johnny\Documents\WindowsPowerShell\profile.ps1 "[System.Environment]::SetEnvironmentVariable('PATH',`$Env:PATH+';C:\Users\Johnny\Apps\go-ipfs-v0.5.0\go-ipfs')"
    ```
 
-1. Close and reopen your PowerShell window. Test that your IPFS path is set correctly by going to your home folder and asking IPFS for the version:
+   If you'd prefer not to use the command-line for this step, you can open the `profile.ps1` file in Notepad and enter the location manually. If the `profile.ps1` file does not exist on your computer, you will have to create it.
+
+   ![PowerShell profile in Windows.](./images/command-line-quick-start/powershell-profile-in-windows.png)
+
+6. Close and reopen your PowerShell window. Test that your IPFS path is set correctly by going to your home folder and asking IPFS for the version:
 
    ```powershell
    cd ~
-   ipfs --version
+   ipfs.exe --version
 
    > ipfs version 0.5.0
    ```
 
+All IPFS commands ran in Windows must be ran as `ipfs.exe`. Attempting to call IPFS without the `.exe` extension will result in the following error:
+
+```powershell
+ipfs --version
+
+> The system cannot find the path specified.
+> '""' is not recognized as an internal or external command, operable program or batch file.
+```
+
 ### macOS
 
-1. Download [`go-ipfs_v0.5.0_darwin-386.tar.gz` from GitHub](https://github.com/ipfs/go-ipfs/releases/tag/v0.5.0).
+1. Download the macOS binary from [`dist.ipfs.io`](https://dist.ipfs.io/#go-ipfs).
 
    ```bash
-   wget https://github.com/ipfs/go-ipfs/releases/download/v0.5.0/go-ipfs_v0.5.0_darwin-amd64.tar.gz
+   wget https://dist.ipfs.io/go-ipfs/v0.5.0/go-ipfs_v0.5.0_darwin-amd64.tar.gz
    ```
 
 1. Unzip the file:
@@ -100,7 +114,7 @@ Installing IPFS is simple, but varies between operating system:
    > Moved ./ipfs to /usr/local/bin
    ```
 
-1. Check that IPFS install properly:
+1. Check that IPFS installed properly:
 
    ```bash
    ipfs --version
@@ -110,10 +124,10 @@ Installing IPFS is simple, but varies between operating system:
 
 ### Linux
 
-1. Download [`go-ipfs_v0.5.0_linux-amd64.tar.gz` from GitHub](https://github.com/ipfs/go-ipfs/releases/tag/v0.5.0):
+1. Download the Linux binary from [`dist.ipfs.io`](https://dist.ipfs.io/#go-ipfs).
 
    ```bash
-   wget https://github.com/ipfs/go-ipfs/releases/download/v0.5.0/go-ipfs_v0.5.0_linux-amd64.tar.gz
+   wget https://dist.ipfs.io/go-ipfs/v0.5.0/go-ipfs_v0.5.0_linux-amd64.tar.gz
    ```
 
 1. Unzip the file:
@@ -148,91 +162,93 @@ Installing IPFS is simple, but varies between operating system:
 
 ## Initialize the repository
 
-`ipfs` stores all its settings and internal data in a directory called _the repository._ Before using IPFS for the first time, you’ll need to initialize the repository with the `ipfs init` command:
+IPFS stores all its settings and internal data in a directory known as a _repository._ Before using IPFS for the first time you need to initialize the repository:
 
 ```bash
 ipfs init
-> initializing ipfs node at /Users/jbenet/.go-ipfs
+
+> initializing IPFS node at C:\Users\Johnny\.ipfs
 > generating 2048-bit RSA keypair...done
-> peer identity: Qmcpo2iLBikrdf1d6QU6vXuNb6P7hwrbNPW9kLAH8eG67z
+> peer identity: QmQvh3NLLprm2yp7STLvtboHrULbs7vbxg9GRFLqbkp2ET
 > to get started, enter:
 >
->   ipfs cat /ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/readme
+>        ipfs cat /ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc/readme
 ```
 
-If you are running on a server in a data center, you should initialize IPFS with the `server` profile. Doing so will prevent IPFS from creating a lot of data center-internal traffic trying to discover local nodes:
+If you are running on a server in a data center, you should initialize IPFS with the `--profile server` option. Doing so will prevent IPFS from creating a lot of internal traffic within your data-center when trying to discover local nodes:
 
 ```bash
 ipfs init --profile server
 ```
 
-There are a whole host of other configuration options you may want to set — check [the full reference](https://github.com/ipfs/go-ipfs/blob/master/docs/config.md) for more.
+Check out [the full reference](https://github.com/ipfs/go-ipfs/blob/master/docs/config.md) for more information on what can be configured on start-up.
 
 The hash after `peer identity:` is your node’s ID and will be different from the one shown in the above output. Other nodes on the network use it to find and connect to you. You can run `ipfs id` at any time to get it again if you need it.
 
-Now, try running the command suggested to you in the output of `ipfs init`. The one that looks like `ipfs cat /ipfs/<HASH>/readme`.
+Now, try running the command suggested to you in the output of `ipfs init`:
 
-You should see something like this:
+```bash
+ipfs cat /ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc/readme
 
-```text
-Hello and Welcome to IPFS!
-
-██╗██████╗ ███████╗███████╗
-██║██╔══██╗██╔════╝██╔════╝
-██║██████╔╝█████╗  ███████╗
-██║██╔═══╝ ██╔══╝  ╚════██║
-██║██║     ██║     ███████║
-╚═╝╚═╝     ╚═╝     ╚══════╝
-
-If you see this, you have successfully installed
-IPFS and are now interfacing with the ipfs merkledag!
-
- -------------------------------------------------------
-| Warning:                                              |
-|   This is alpha software. use at your own discretion! |
-|   Much is missing or lacking polish. There are bugs.  |
-|   Not yet secure. Read the security notes for more.   |
- -------------------------------------------------------
-
-Check out some of the other files in this directory:
-
-  ./about
-  ./help
-  ./quick-start     <-- usage examples
-  ./readme          <-- this file
-  ./security-notes
+> Hello and Welcome to IPFS!
+>
+> ██╗██████╗ ███████╗███████╗
+> ██║██╔══██╗██╔════╝██╔════╝
+> ██║██████╔╝█████╗  ███████╗
+> ██║██╔═══╝ ██╔══╝  ╚════██║
+> ██║██║     ██║     ███████║
+> ╚═╝╚═╝     ╚═╝     ╚══════╝
+>
+> ...
 ```
 
 You can explore other objects in the repository. In particular, the `quick-start` directory which shows example commands to try:
 
 ```bash
-ipfs cat /ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/quick-start
+ipfs cat /ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc/quick-start
+
+> # 0.1 - Quick Start
+>
+> This is a set of short examples with minimal explanation. It is meant as a "quick start".
+>
+> Add a file to ipfs:
+>
+>   echo "hello world" >hello
+>   ipfs add hello
+>
+> ...
 ```
 
 ## Take your node online
 
-Once you're ready to join your node to the public network, run the ipfs daemon in another terminal and wait for all three lines below to appear to know that your node is ready:
+Once you're ready to join your node to the public network, run the IPFS daemon in another terminal and wait for all three lines below to appear to know that your node is ready:
 
 ```bash
 ipfs daemon
+
 > Initializing daemon...
-> API server listening on /ip4/127.0.0.1/tcp/5001
-> Gateway server listening on /ip4/127.0.0.1/tcp/8080
+> go-ipfs version: 0.5.0
+>
+> ...
+>
+> WebUI: http://127.0.0.1:5001/webui
+> Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8080
+> Daemon is ready
 ```
 
 Make a note of the TCP ports you receive. If they are different, use yours in the commands below.
 
-Now, switch back to your original terminal. If you’re connected to the network, you should be able to see the ipfs addresses of your peers when you run:
+Switch back to your original terminal, the one without the IPFS daemon running in it. If you’re connected to the network, you should be able to see the IPFS addresses of your peers when you run:
 
 ```bash
 ipfs swarm peers
-> /ip4/104.131.131.82/tcp/4001/ipfs/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ
-> /ip4/104.236.151.122/tcp/4001/ipfs/QmSoLju6m7xTh3DuokvT3886QRYqxAzb1kShaanJgW36yx
-> /ip4/134.121.64.93/tcp/1035/ipfs/QmWHyrPWQnsz1wxHR219ooJDYTvxJPyZuDUPSDpdsAovN5
-> /ip4/178.62.8.190/tcp/4002/ipfs/QmdXzZ25cyzSF99csCQmmPZ1NTbWTe8qtKFaZKpZQPdTFB
+
+> /ip4/3.133.104.246/tcp/4001/p2p/QmYnEsSi9mjnaepFKuGfyzDbUTqayHzbvvsgDUFZ5rdrVG
+> /ip4/34.203.148.133/tcp/4001/p2p/QmZq1wrZNDcS26RGzd1EZU65GNuUDcXApZruPzHnxWjV5g
+> /ip4/35.226.44.58/tcp/4001/p2p/QmQS2ryqZrjJtPKDy9VTkdPwdUSpTi1TdpGUaqAVwfxcNh
 ```
 
-These are a combination of `<transport address>/ipfs/<hash-of-public-key>`.
+These are a combination of `<transport address>/p2p/<hash-of-public-key>`.
 
 Now, you should be able to get objects from the network. Try:
 
