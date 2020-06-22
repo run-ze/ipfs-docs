@@ -1,6 +1,6 @@
 // .vuepress/config.js
 
-const DEPLOY_DOMAIN = 'https://docs.ipfs.io'
+const DEPLOY_DOMAIN = 'https://ipfs.zh-cn.help'
 
 module.exports = {
   base: '/',

@@ -54,13 +54,21 @@ export default {
       return root.scrollHeight < 15000
         ? root.classList.add('smooth-scroll')
         : root.classList.remove('smooth-scroll')
+    },
+    // TODO: temporary hack, remove if accepted by official
+    gotoChinese() {
+      if (this.$lang !== 'zh-Hans') {
+        location.pathname = '/zh-Hans' + location.pathname
+      }
     }
   },
   mounted: function () {
     this.smoothScroll()
+    this.gotoChinese()
   },
   updated: function () {
     this.smoothScroll()
+    this.gotoChinese()
   }
 }
 </script>
