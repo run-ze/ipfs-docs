@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+Sitemap: https:/ipfs.zh-cn.help/sitemap.xml
+Host: https://ipfs.zh-cn.help
